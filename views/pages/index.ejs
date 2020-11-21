@@ -13,11 +13,13 @@
       xmlhttp.open("GET", "https://enigmatic-crag-16073.herokuapp.com/get_user_info", true);
       xmlhttp.onreadystatechange=function(){
         if(xmlhttp.readystate == 4 && xmlhttp.status == 200){
+          console.log("successfuly got into callback on ajax")
           document.getElementById("showData").innerHTML = xmlhttp.responseText
           //var myObj = JSON.parse(xmlhttp.responseText);
         }
       }
       xmlhttp.send()
+      console.log("leaving getData function")
     }
   </script>
 </body>

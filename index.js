@@ -22,7 +22,7 @@ express()
       }
       console.log("back with DB results:")
       console.log(result.rows)
-      res.status(200).send(result.rows)
+      res.status(200).send(result)
     })
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))

@@ -14,8 +14,13 @@
       xmlhttp.onreadystatechange=function(){
         if(this.readyState == 4 && this.status == 200){
           console.log("successfuly got into callback on ajax")
-          document.getElementById("showData").innerHTML = this.responseText
-          //var myObj = JSON.parse(xmlhttp.responseText);
+          //document.getElementById("showData").innerHTML = this.responseText
+          var myObj = JSON.parse(xmlhttp.responseText);
+          document.getElementById('showData').innerHTML = 
+          'Here is your user information: <br>' +
+          '<table><tr><th>First Name</th><th>Last Name</th><th>Transaction Date</th><th>Transaction Location</th><th>Category</th><th>Amount</th><th>Pay Method</th><th>Description</th><th>Type</th></tr>' +
+          '<tr><td>' + myObj.first_name + '</td>' + '<td>' + myObj.last_name + '</td>' + '<td>' + myObj.trans_date + '</td>' + '<td>' + myObj.trans_location + '</td>' +
+          '<td>' + myObj.category + '</td>' + '<td>' + myObj.amount + '</td>' + '<td>' + myObj.pay_method + '</td>' + '<td>' + myObj.entry_desc + '</td>' + '<td>' + myObj.wd_type + '</td></tr>'  
         }
       }
       xmlhttp.send()

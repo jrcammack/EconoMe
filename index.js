@@ -16,10 +16,12 @@ express()
       if (err) {
         console.log("error in query")
         console.log(err)
+        res.status(400).send(err)
       }
       console.log("back with DB results:")
       console.log(result.rows)
       res.status(200).send(result.rows)
+      pool.end()
     })
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))

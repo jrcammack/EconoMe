@@ -12,9 +12,9 @@
       xmlhttp = new XMLHttpRequest();
       xmlhttp.open("GET", "https://enigmatic-crag-16073.herokuapp.com/get_user_info", true);
       xmlhttp.onreadystatechange=function(){
-        if(xmlhttp.readystate == 4 && xmlhttp.status == 200){
+        if(this.readystate == 4 && this.status == 200){
           console.log("successfuly got into callback on ajax")
-          document.getElementById("showData").innerHTML = xmlhttp.responseText
+          document.getElementById("showData").innerHTML = this.responseText
           //var myObj = JSON.parse(xmlhttp.responseText);
         }
       }

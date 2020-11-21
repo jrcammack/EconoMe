@@ -3,7 +3,9 @@ const path = require('path')
 const PORT = process.env.PORT || 5000
 const connectionString = process.env.DATABASE_URL || "postgres://vxoamrmqssrudd:4c05e37c81e75aec0250bfb63a806b52fde20762f604e8cbc35ad5146551b3e4@ec2-35-168-77-215.compute-1.amazonaws.com:5432/d317kp8ultukfi?ssl=true"
 const {Pool, Client} = require('pg')
-const pool = new Pool()
+const pool = new Pool({
+  connectionString: connectionString
+})
 
 express()
   .use(express.static(path.join(__dirname, 'public')))

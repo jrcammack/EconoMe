@@ -10,13 +10,14 @@
   <script>
     function getData() {
       xmlhttp = new XMLHttpRequest();
-      xmlhttp.open("GET", "/get_user_info", true);
+      xmlhttp.open("GET", "https://enigmatic-crag-16073.herokuapp.com/get_user_info", true);
       xmlhttp.onreadystatechange=function(){
         if(xmlhttp.readystate == 4 && xmlhttp.status == 200){
           document.getElementById("showData").innerHTML = xmlhttp.responseText
           //var myObj = JSON.parse(xmlhttp.responseText);
         }
       }
+      xmlhttp.send()
     }
   </script>
 </body>

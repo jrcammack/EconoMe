@@ -14,5 +14,7 @@ body {
 
 #logo {
    background-image: url("../econome_logo_transparent.png");
+   background-repeat: no-repeat;
+   background-size: cover;
    height: 300px;
 }

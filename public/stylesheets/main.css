@@ -34,5 +34,5 @@ body {
 }
 
 tr:nth-child(even) {
-   background-color: whitesmoke;
+   background-color: rgb(139, 139, 139);
 }

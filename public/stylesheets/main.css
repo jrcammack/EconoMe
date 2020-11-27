@@ -17,6 +17,7 @@ body {
    font-size: xx-large;
    align-items: center;
    justify-content: center;
+   height: 200px;
 }
 
 #logo {

@@ -28,3 +28,7 @@ body {
    background-size: contain;
    height: 200px;
 }
+
+#checkRegister {
+   color: white;
+}

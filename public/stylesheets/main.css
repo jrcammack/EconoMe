@@ -12,6 +12,11 @@ body {
    height: 200px;
 }
 
+#slogan {
+   color: white;
+   font-size: xx-large;
+}
+
 #logo {
    background-image: url("../econome_logo_transparent.png");
    background-repeat: no-repeat;

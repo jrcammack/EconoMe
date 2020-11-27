@@ -4,17 +4,17 @@ body {
 
 #header {
    width: 100%;
-   height: 100px;
+   height: 200px;
 }
 
 #headerRow {
    width: 100%;
-   height: 100px;
+   height: 200px;
 }
 
 #logo {
    background-image: url("../econome_logo_transparent.png");
    background-repeat: no-repeat;
    background-size: contain;
-   height: 100px;
+   height: 200px;
 }

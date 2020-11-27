@@ -36,3 +36,9 @@ body {
 tr:nth-child(even) {
    background-color: rgb(139, 139, 139);
 }
+
+td, th {
+   border: 1px solid #dddddd;
+   text-align: left;
+   padding: 10px;
+}

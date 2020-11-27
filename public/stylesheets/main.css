@@ -2,6 +2,13 @@ body {
    background-color: #3b3b3b;
 }
 
+#header {
+   width: 100%;
+   height: 300px;
+}
+
+
+
 #logo {
    background-image: url("../econome_logo_transparent.png");
 }

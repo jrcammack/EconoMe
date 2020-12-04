@@ -47,6 +47,7 @@ td, th {
    background-color: whitesmoke;
    border-radius: 5px;
    height: 100%;
+   margin-left: 25%;
 }
 
 #dialogHolder {

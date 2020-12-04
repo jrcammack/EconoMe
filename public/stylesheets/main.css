@@ -42,3 +42,8 @@ td, th {
    text-align: left;
    padding: 10px;
 }
+
+#loginDialog {
+   background-color: whitesmoke;
+   border-radius: 5px;
+}

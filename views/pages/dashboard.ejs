@@ -4,20 +4,34 @@
   <% include ../partials/header.ejs %>
 </head>
 <body>
-  <div class="container">
-    <form action="" method="GET" id="loginDialog">
-      <div class="imageContainer">
-        <img src="../../public/login_avatar.png" alt="Avatar"> 
-      </div>
-      <label for="username"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="username" required>
-      
-      <label for="password"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="password" required>
-
-      <button type="submit">Login</button>
-    </form>
+  <div id="header" class="container">
+    <div id="headerRow" class="row">
+      <div id="logo" class="col-lg-4"></div>
+      <div id="slogan" class="col-lg-8 text-center"><span id="sloganHolder">Your Financial Goals Can Become Reality</span></div>
+    </div>
   </div>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">EconoMe</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="#">DashBoard</a></li>
+        <li><a href="#">Check Register</a></li>
+        <li><a href="#">Goals</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3"></div>
+      <div id="checkRegister" class="col-lg-6"></div>
+      <div id="filterControls" class="col-lg-3">
+        
+      </div>
+    </div>
+  </div>
+  Retrieve User information<button type="button" onclick="getData()">Get Data</button>
 
   <script>
     function getData() {

@@ -52,9 +52,13 @@ td, th {
 #dialogHolder {
   width: 50%; 
   margin-top: 200px;
-  height: 500px;
+  height: 300px;
 }
 
 .imageContainer, #unameLabel, #unameInput, #passLabel, #passInput, #loginButton {
-   margin-left: 50%;
+   margin-left: 30%;
+}
+.imageContainer {
+   height: 50px;
+   width: 50px;
 }

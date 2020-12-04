@@ -55,10 +55,12 @@ td, th {
   height: 300px;
 }
 
-.imageContainer, #unameLabel, #unameInput, #passLabel, #passInput, #loginButton {
-   margin-left: 30%;
+#unameLabel, #unameInput, #passLabel, #passInput, #loginButton {
+   margin-left: 40%;
 }
 .imageContainer {
+   margin-left: 45%;
    height: 50px;
    width: 50px;
+   background-image: url("./../public/login_avatar.png");
 }

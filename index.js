@@ -12,6 +12,7 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
+  .get('/login_avatar.png', (req, res) => {res.send('pages/login_avatar.png')})
   .get('/get_user_info', function (req, res) {
     var sql = 'SELECT u.first_name, u.last_name, cr.trans_date, cr.trans_location, cr.category, cr.amount, cr.pay_method, cr.entry_desc, cr.wd_type FROM users u INNER JOIN check_register_entry cr ON u.user_name = cr.user_name;';
     pool.query(sql, function(err, result) {

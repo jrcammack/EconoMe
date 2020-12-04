@@ -47,11 +47,14 @@ td, th {
    background-color: whitesmoke;
    border-radius: 5px;
    height: 100%;
-   margin-left: 25%;
 }
 
 #dialogHolder {
   width: 50%; 
   margin-top: 200px;
   height: 300px;
+}
+
+.imageContainer, #unameLabel, #unameInput, #passLabel, #passInput, #loginButton {
+   margin-left: 25%;
 }

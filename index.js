@@ -21,6 +21,7 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
+  .get('/register.ejs', (req, res) => res.render('pages/register.ejs'))
   .post('/register', function(req, res) {
     //create query to see if username is taken
     var query = 'SELECT user_name, FROM users WHERE user_name = $1'

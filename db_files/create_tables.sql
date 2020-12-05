@@ -1,9 +1,10 @@
 -- create user table
 CREATE TABLE users (
    user_name VARCHAR(50) CONSTRAINT pk_user PRIMARY KEY,
-   first_name VARCHAR(70) CONSTRAINT nn_user_1 NOT NULL,
-   last_name VARCHAR(70) CONSTRAINT nn_user_2 NOT NULL,
-   monthly_income NUMERIC CONSTRAINT nn_user_3 NOT NULL
+   hashed_pass VARCHAR(50) CONSTRAINT nn_user_1 NOT NULL,
+   first_name VARCHAR(70) CONSTRAINT nn_user_2 NOT NULL,
+   last_name VARCHAR(70) CONSTRAINT nn_user_3 NOT NULL,
+   monthly_income NUMERIC CONSTRAINT nn_user_4 NOT NULL
 );
 
 -- create common lookup tables

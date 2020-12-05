@@ -6,7 +6,7 @@
 <body>
   <div id="title">Welcome to EconoMe</div>
   <div class="container" id="dialogHolder">
-    <form action="/login" method="POST" id="loginDialog">
+    <form action="/register" method="POST" id="loginDialog">
       <div class="imageContainer"></div> 
       <br>
       <label id="unameLabel" for="username"><b>Username</b></label><br>
@@ -17,36 +17,26 @@
       <input id="passInput" type="password" placeholder="Enter Password" name="password" required>
       <br>
       <br>
-      <button id="loginButton" type="submit">Login</button>
+      <label id="fnameLabel" for="fname"><b>First Name</b></label><br>
+      <input id="fnameInput" type="text" placeholder="Enter First Name" name="fname" required>
       <br>
-      <a href="register.ejs">Create New Account</a>
+      <br>
+      <label id="lnameLabel" for="lname"><b>Last Name</b></label><br>
+      <input id="lnameInput" type="text" placeholder="Enter Last Name" name="lname" required>
+      <br>
+      <br>
+      <label id="incomeLabel" for="income"><b>Monthly Income</b></label><br>
+      <input id="incomeInput" type="number" placeholder="Enter Monthly Income" name="income" required>
+      <br>
+      <br>
+      <button id="loginButton" type="button" onclick="register()">Register</button>
+      <a href="index.ejs">Return to Login</a>
       <span id="loginErr"></span>
     </form>
   </div>
 
   <script>
     $(document).ready(function(){
-      //login function
-      function login() {
-        $('#loginErr').text('');
-        var username = $('#unameInput').val();
-        var password = $('#passInput').val();
-
-        var params = {
-          username: username ,
-          password: password
-        };
-
-        $.post('/login', params, function(result) {
-          if (result && result.success) {
-            console.log('user logged in')
-            window.location = 'https://enigmatic-crag-16073.herokuapp.com/' + result.redirect
-          }
-          else {
-            $('#loginErr').text('There was an error logging in');
-          }
-        })
-      };
 
 
       //register function
@@ -54,11 +44,17 @@
         $('#loginErr').text('');
         var username = $('#unameInput').val();
         var password = $('#passInput').val();
+        var fname = $('#fnameInput').val();
+        var lname = $('#lnameInput').val();
+        var income = $('#incomeInput').val();
 
         var params = {
-          username: username ,
-          password: password
-        };
+          username: username,
+          password: password,
+          fname: fname,
+          lname: lname,
+          income: income
+        }
 
         $.post('/register', params, function(result) {
           if (result && result.success) {
@@ -66,10 +62,10 @@
             window.location = 'https://enigmatic-crag-16073.herokuapp.com/' + result.redirect
           }
           else {
-            $('#loginErr').text('There was an error registering');
+            $('#loginErr').text('There was an error registering: ' + result.msg)
           }
         })
-      };
+      }
     });
   </script>
 </body>

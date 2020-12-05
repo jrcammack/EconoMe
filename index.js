@@ -24,7 +24,7 @@ express()
   .get('/register.ejs', (req, res) => res.render('pages/register.ejs'))
   .post('/register', function(req, res) {
     //create query to see if username is taken
-    var query = 'SELECT user_name, FROM users WHERE user_name = $1'
+    var query = 'SELECT user_name FROM users WHERE user_name = $1'
     values = [req.body.username]
 
     //execute query

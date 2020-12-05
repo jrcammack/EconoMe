@@ -52,7 +52,8 @@ td, th {
 
 #dialogHolder {
   width: 50%; 
-  margin-top: 200px;
+  margin-top: 100px;
+  margin-bottom: 200px;
   height: 300px;
 }
 
@@ -61,7 +62,7 @@ td, th {
 }
 .imageContainer {
    margin-left: 45%;
-   margin-top: 10px;
+   margin-top: 50px;
    height: 60px;
    width: 60px;
    background-image: url('../login_avatar.png');
@@ -73,5 +74,5 @@ td, th {
    color: whitesmoke;
    text-align: center;
    margin-top: 100px;
-   
+
 }

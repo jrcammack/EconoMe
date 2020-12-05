@@ -6,7 +6,7 @@
 <body>
   <div id="title">Welcome to EconoMe</div>
   <div class="container" id="dialogHolder">
-    <form action="/login" method="POST" id="loginDialog">
+    <div id="loginDialog">
       <div class="imageContainer"></div> 
       <br>
       <label id="unameLabel" for="username"><b>Username</b></label><br>
@@ -17,11 +17,11 @@
       <input id="passInput" type="password" placeholder="Enter Password" name="password" required>
       <br>
       <br>
-      <button id="loginButton" type="button" onclick="login()">Login</button>
+      <button id="loginButton" onclick="login()">Login</button>
       <br>
       <a id="registerLink" href="register.ejs">Create New Account</a>
       <span id="loginErr"></span>
-    </form>
+    </div>
   </div>
 
   <script>

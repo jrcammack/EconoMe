@@ -14,7 +14,7 @@ express()
   .use(express.static(path.join(__dirname, 'public')))
   .use(express.urlencoded({extended: false}))
   .use(session({
-    secret: secretShadow ,
+    secret: 'secretShadow' ,
     resave: false ,
     saveUninitialized: true
   }))

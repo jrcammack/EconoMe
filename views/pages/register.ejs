@@ -5,8 +5,8 @@
 </head>
 <body>
   <div id="title">Welcome to EconoMe</div>
-  <div class="container" id="dialogHolder">
-    <form action="/register" method="POST" id="loginDialog">
+  <div class="container" id="dialogHolderRegister">
+    <form action="/register" method="POST" id="loginDialogRegister">
       <div class="imageContainer"></div> 
       <br>
       <label id="unameLabel" for="username"><b>Username</b></label><br>
@@ -29,8 +29,8 @@
       <input id="incomeInput" type="number" placeholder="Enter Monthly Income" name="income" required>
       <br>
       <br>
-      <button id="loginButton" type="button" onclick="register()">Register</button>
-      <a href="/">Return to Login</a>
+      <button id="loginButton" type="button" onclick="register()">Register</button><br>
+      <a id="loginLink" href="/">Return to Login</a>
       <span id="loginErr"></span>
     </form>
   </div>

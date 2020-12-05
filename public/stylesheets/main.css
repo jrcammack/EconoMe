@@ -57,7 +57,22 @@ td, th {
   height: 300px;
 }
 
-#unameLabel, #unameInput, #passLabel, #passInput, #loginButton {
+#loginDialogRegister {
+   background-color: whitesmoke;
+   border-radius: 5px;
+   height: 100%;
+   width: 100%;
+}
+
+#dialogHolderRegister {
+  width: 50%; 
+  margin-top: 100px;
+  margin-bottom: 200px;
+  height: 500px;
+}
+
+#registerLink, #unameLabel, #unameInput, #passLabel, #passInput, #loginButton, #fnameLabel, #fnameInput,
+#lnameLabel, #lnameInput, #incomeLabel, #incomeInput, #loginLink {
    margin-left: 35%;
 }
 .imageContainer {

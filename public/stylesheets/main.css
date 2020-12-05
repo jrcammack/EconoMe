@@ -61,8 +61,17 @@ td, th {
 }
 .imageContainer {
    margin-left: 45%;
-   height: 75px;
-   width: 75px;
+   margin-top: 10px;
+   height: 60px;
+   width: 60px;
    background-image: url('../login_avatar.png');
    background-repeat: no-repeat;
+}
+
+#title {
+   font-size: xx-large;
+   color: whitesmoke;
+   text-align: center;
+   margin-top: 100px;
+   
 }

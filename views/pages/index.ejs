@@ -17,7 +17,7 @@
       <input id="passInput" type="password" placeholder="Enter Password" name="password" required>
       <br>
       <br>
-      <button id="loginButton" type="submit">Login</button>
+      <button id="loginButton" type="button" onclick="login()">Login</button>
       <br>
       <a id="registerLink" href="register.ejs">Create New Account</a>
       <span id="loginErr"></span>
@@ -43,7 +43,7 @@
             window.location = 'https://enigmatic-crag-16073.herokuapp.com/' + result.redirect
           }
           else {
-            $('#loginErr').text('There was an error logging in');
+            $('#loginErr').text(result.msg);
           }
         })
       };

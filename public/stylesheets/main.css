@@ -63,4 +63,5 @@ td, th {
    margin-left: 45%;
    height: 50px;
    width: 50px;
+   background-image: url('../login_avatar.png');
 }

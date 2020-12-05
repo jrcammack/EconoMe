@@ -62,7 +62,6 @@ td, th {
 }
 .imageContainer {
    margin-left: 45%;
-   margin-top: 50px;
    height: 60px;
    width: 60px;
    background-image: url('../login_avatar.png');

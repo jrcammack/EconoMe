@@ -32,9 +32,18 @@
       </div>
     </div>
   </div>
-  Retrieve User information<button type="button" onclick="getData()">Get Data</button>
+  Retrieve User information<button type="button" onclick="getData()">Load Transactions</button>
 
   <script>
+     function loadTransactions() {
+         $.get('/get_user_info', function (result) {
+            $('#checkRegister').html('Here is your user information: <br>' +
+          '<table><tr><th>First Name</th><th>Last Name</th><th>Transaction Date</th><th>Transaction Location</th><th>Category</th><th>Amount</th><th>Pay Method</th><th>Description</th><th>Type</th></tr>' +
+          '<tr><td>' + myObj.first_name + '</td>' + '<td>' + myObj.last_name + '</td>' + '<td>' + myObj.trans_date + '</td>' + '<td>' + myObj.trans_location + '</td>' +
+          '<td>' + myObj.category + '</td>' + '<td>' + myObj.amount + '</td>' + '<td>' + myObj.pay_method + '</td>' + '<td>' + myObj.entry_desc + '</td>' + '<td>' + myObj.wd_type + '</td></tr>'  )
+         })
+     }
+     
     function getData() {
       xmlhttp = new XMLHttpRequest();
       xmlhttp.open("GET", "https://enigmatic-crag-16073.herokuapp.com/get_user_info", true);

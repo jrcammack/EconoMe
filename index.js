@@ -24,7 +24,7 @@ express()
   .get('/register.ejs', (req, res) => res.render('pages/register.ejs'))
   .get('/dashboard', function(req, res) {
     if (req.session.username && req.session.password) {
-      res.send('pages/dashboard.ejs')
+      res.render('pages/dashboard.ejs')
     }
     else {
       res.redirect('/')

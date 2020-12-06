@@ -54,6 +54,7 @@ express()
           pool.query(insert, values, function(err, response) {
             if (err) {
               console.log(err.stack)
+              res.send({success: false, redirect: '', msg: 'error inserting to DB'})
             }
           })
 

@@ -22,6 +22,24 @@ express()
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
   .get('/register.ejs', (req, res) => res.render('pages/register.ejs'))
+  .get('/dashboard', function(req, res) {
+    if (req.session.username && req.session.password) {
+      res.send('pages/dashboard.ejs')
+    }
+    else {
+      res.redirect('/')
+    }
+  })
+  .get('/logout', function(req, res) {
+    if (req.session.username && req.session.password) {
+      req.session.destroy(function () {
+        res.redirect('/')
+      })
+    }
+    else {
+      res.end()
+    }
+  })
   .post('/register', function(req, res) {
     //create query to see if username is taken
     var query = 'SELECT user_name FROM users WHERE user_name = $1'

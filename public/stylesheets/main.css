@@ -72,7 +72,7 @@ td, th {
 }
 
 #registerLink, #unameLabel, #unameInput, #passLabel, #passInput, #loginButton, #fnameLabel, #fnameInput,
-#lnameLabel, #lnameInput, #incomeLabel, #incomeInput, #loginLink, #loginErr {
+#lnameLabel, #lnameInput, #incomeLabel, #incomeInput, #loginLink, #loginErr, .insertOption {
    margin-left: 35%;
 }
 .imageContainer {

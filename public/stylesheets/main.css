@@ -31,6 +31,7 @@ body {
 
 #checkRegister {
    color: white;
+   margin-bottom: 200px;
 }
 
 tr:nth-child(even) {

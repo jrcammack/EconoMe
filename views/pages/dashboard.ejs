@@ -24,6 +24,16 @@
     </div>
   </nav>
   <div class="container">
+   <div class="row">
+     <div class="col-lg-3"></div>
+     <div id="dashControls" class="col-lg-6">
+        <button type="button" onclick="loadTransactions()">Load Transactions</button>
+        <button type="button" onclick="createInsertDialog()">Insert New Transaction</button>
+     </div>
+     <div class="col-lg-3"></div>
+   </div>
+ </div>
+  <div class="container">
     <div class="row">
       <div class="col-lg-3"></div>
       <div id="checkRegister" class="col-lg-6"></div>
@@ -32,7 +42,7 @@
       </div>
     </div>
   </div>
-  Retrieve User information<button type="button" onclick="getData()">Load Transactions</button>
+  
 
   <script>
      function loadTransactions() {
@@ -43,25 +53,79 @@
           '<td>' + myObj.category + '</td>' + '<td>' + myObj.amount + '</td>' + '<td>' + myObj.pay_method + '</td>' + '<td>' + myObj.entry_desc + '</td>' + '<td>' + myObj.wd_type + '</td></tr>'  )
          })
      }
+
+     function createInsertDialog() {
+        $('#checkRegister').html(
+           '<form id="insertDialog" method="POST" action="/insert_transaction">' +
+           '<label for="transDate"><b>Transaction Date</b><label><br>' +
+           '<input type="date" name="transDate" required><br>' +  
+           '<label for="transLocation"><b>Transaction Location</b><label><br>' +
+           '<input type="text" name="transLocation" required><br>' + 
+           '<label for="category"><b>Category</b><label><br>' +
+           '<select name="category">' +
+           '<option value="1">Mortgage/Rent</option>' + 
+           '<option value="2">Car Payment</option>' +
+           '<option value="3">Gas (Car)</option>' + 
+           '<option value="4">Car Maintenance</option>' +
+           '<option value="5">Groceries</option>' +
+           '<option value="6">Restaurants</option>' +
+           '<option value="7">Electricity</option>' + 
+           '<option value="8">Gas (Home)</option>' +
+           '<option value="9">Water</option>' + 
+           '<option value="10">Garbage</option>' +  
+           '<option value="11">Phone Bill</option>' +
+           '<option value="12">Cable/Internet</option>' +
+           '<option value="13">Clothing</option>' +
+           '<option value="14">Insurance/Healthcare</option>' +
+           '<option value="15">Memberships</option>' +
+           '<option value="16">Personal</option>' +
+           '<option value="17">Debt</option>' +
+           '<option value="18">Retirement</option>' +
+           '<option value="19">Education</option>' +
+           '<option value="20">Savings</option>' +
+           '<option value="21">Gifts/Donations</option>' +
+           '<option value="21">Entertainment</option>' +
+           '</select><br>' +
+           '<label for="amount"><b>Amount</b><label><br>' +
+           '<input type="number" name="amount" required><br>' +
+           '<label for="payMethod"><b>Payment Method</b><label><br>' +
+           '<select name="payMethod">' +
+           '<option value="1">Cash</option>' +
+           '<option value="2">Credit Card</option>' +
+           '<option value="3">Debit Card</option>' +
+           '<option value="4">Check</option>' +
+           '<option value="5">None</option>' +
+           '</select><br>' +
+           '<label for="desc"><b>Description</b><label><br>' +
+           '<textarea name="desc" rows="2" cols="150"></textarea>' +
+           '<label for="wd_type"><b>Withdrawal/Deposit</b><label><br>' +
+           '<select name="wd_type">' +
+           '<option value="1">Withdrawal</option>' + 
+           '<option value="2">Deposit</option>' +
+           '</select><br>' +
+           '<button type="button" onclick="">Insert</button>' +
+           '</form>'
+         )
+     }
      
-    function getData() {
-      xmlhttp = new XMLHttpRequest();
-      xmlhttp.open("GET", "https://enigmatic-crag-16073.herokuapp.com/get_user_info", true);
-      xmlhttp.onreadystatechange=function(){
-        if(this.readyState == 4 && this.status == 200){
-          console.log("successfuly got into callback on ajax")
-          //document.getElementById("showData").innerHTML = this.responseText
-          var myObj = JSON.parse(xmlhttp.responseText);
-          document.getElementById('checkRegister').innerHTML = 
-          'Here is your user information: <br>' +
-          '<table><tr><th>First Name</th><th>Last Name</th><th>Transaction Date</th><th>Transaction Location</th><th>Category</th><th>Amount</th><th>Pay Method</th><th>Description</th><th>Type</th></tr>' +
-          '<tr><td>' + myObj.first_name + '</td>' + '<td>' + myObj.last_name + '</td>' + '<td>' + myObj.trans_date + '</td>' + '<td>' + myObj.trans_location + '</td>' +
-          '<td>' + myObj.category + '</td>' + '<td>' + myObj.amount + '</td>' + '<td>' + myObj.pay_method + '</td>' + '<td>' + myObj.entry_desc + '</td>' + '<td>' + myObj.wd_type + '</td></tr>'  
-        }
-      }
-      xmlhttp.send()
-      console.log("leaving getData function")
-    }
+   //  function getData() {
+   //    xmlhttp = new XMLHttpRequest();
+   //    xmlhttp.open("GET", "https://enigmatic-crag-16073.herokuapp.com/get_user_info", true);
+   //    xmlhttp.onreadystatechange=function(){
+   //      if(this.readyState == 4 && this.status == 200){
+   //        console.log("successfuly got into callback on ajax")
+   //        //document.getElementById("showData").innerHTML = this.responseText
+   //        var myObj = JSON.parse(xmlhttp.responseText);
+   //        document.getElementById('checkRegister').innerHTML = 
+   //        'Here is your user information: <br>' +
+   //        '<table><tr><th>First Name</th><th>Last Name</th><th>Transaction Date</th><th>Transaction Location</th><th>Category</th><th>Amount</th><th>Pay Method</th><th>Description</th><th>Type</th></tr>' +
+   //        '<tr><td>' + myObj.first_name + '</td>' + '<td>' + myObj.last_name + '</td>' + '<td>' + myObj.trans_date + '</td>' + '<td>' + myObj.trans_location + '</td>' +
+   //        '<td>' + myObj.category + '</td>' + '<td>' + myObj.amount + '</td>' + '<td>' + myObj.pay_method + '</td>' + '<td>' + myObj.entry_desc + '</td>' + '<td>' + myObj.wd_type + '</td></tr>'  
+   //      }
+   //    }
+   //    xmlhttp.send()
+   //    console.log("leaving getData function")
+   //  }
   </script>
 </body>
 </html>

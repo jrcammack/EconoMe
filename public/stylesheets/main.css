@@ -57,7 +57,7 @@ td, th {
   height: 300px;
 }
 
-#loginDialogRegister {
+#loginDialogRegister, #insertDialog {
    background-color: whitesmoke;
    border-radius: 5px;
    height: 100%;

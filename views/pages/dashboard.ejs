@@ -52,7 +52,8 @@
             var i;
             var txt = '';
             for (i of result.rows) {
-              txt += ('<tr><td>' + i.trans_date + '</td><td>' + i.trans_location + '</td><td>' + i.category + '</td><td>' + i.amount + '</td><td>' + i.pay_method + '</td><td>' + i.entry_desc + '</td><td>' + i.wd_type + '</td></tr>')
+              modifiedDate = new Date(i.trans_date)
+              txt += ('<tr><td>' + modifiedDate.toDateString() + '</td><td>' + i.trans_location + '</td><td>' + i.category + '</td><td>' + i.amount + '</td><td>' + i.pay_method + '</td><td>' + i.entry_desc + '</td><td>' + i.wd_type + '</td></tr>')
             }
             $('#checkRegister').html('Here are your transactions: <br>' +
             '<table><tr><th>Transaction Date</th><th>Transaction Location</th><th>Category</th><th>Amount</th><th>Pay Method</th><th>Description</th><th>Type</th></tr>' + txt + '</table>')

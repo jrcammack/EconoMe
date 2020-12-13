@@ -118,7 +118,7 @@
          )
      }
 
-     function insertTransaction() {
+     function insertTransaction() { 
       var transDate = $('#transDateInput').val()
       var transLocation = $('#transLocationInput').val()
       var category = $('#categoryInput').val()
@@ -139,6 +139,7 @@
 
       $.post('/insert_transaction', params, function(result) {
          if (result.success) {
+            $('checkRegister').css('color', 'white')
             loadTransactions()
          }
          else {

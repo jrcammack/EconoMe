@@ -48,23 +48,31 @@
      function loadTransactions() {
          $('checkRegister').css('color', 'white')
          $.get('/get_user_info', function (result) {
-            $('#checkRegister').html('Here is your user information: <br>' +
-          '<table><tr><th>First Name</th><th>Last Name</th><th>Transaction Date</th><th>Transaction Location</th><th>Category</th><th>Amount</th><th>Pay Method</th><th>Description</th><th>Type</th></tr>' +
-          '<tr><td>' + myObj.first_name + '</td>' + '<td>' + myObj.last_name + '</td>' + '<td>' + myObj.trans_date + '</td>' + '<td>' + myObj.trans_location + '</td>' +
-          '<td>' + myObj.category + '</td>' + '<td>' + myObj.amount + '</td>' + '<td>' + myObj.pay_method + '</td>' + '<td>' + myObj.entry_desc + '</td>' + '<td>' + myObj.wd_type + '</td></tr>'  )
+           if (result.success) {
+            var i;
+            var txt = '';
+            for (i of result.rows) {
+              txt += ('<tr><td>' + i.trans_date + '</td><td>' + i.trans_location + '</td><td>' + i.category + '</td><td>' + i.amount + '</td><td>' + i.pay_method + '</td><td>' + i.entry_desc + '</td><td>' + i.wd_type + '</td></tr>')
+            }
+            $('#checkRegister').html('Here are your transactions: <br>' +
+            '<table><tr><th>Transaction Date</th><th>Transaction Location</th><th>Category</th><th>Amount</th><th>Pay Method</th><th>Description</th><th>Type</th></tr>' + txt + '</table>')
+           }
+           else {
+            $('#checkRegister').text(result.msg)
+           }
          })
      }
 
      function createInsertDialog() {
         $('#checkRegister').css('color', 'black')
         $('#checkRegister').html(
-           '<form id="insertDialog" method="POST" action="/insert_transaction">' +
+           '<div id="insertDialog" method="POST" action="/insert_transaction">' +
            '<label class="insertOption" for="transDate"><b>Transaction Date</b></label><br>' +
-           '<input class="insertOption" type="date" name="transDate" required><br>' +  
+           '<input id="transDateInput" class="insertOption" type="date" name="transDate" required><br>' +  
            '<label class="insertOption" for="transLocation"><b>Transaction Location</b></label><br>' +
-           '<input class="insertOption" type="text" name="transLocation" required><br>' + 
+           '<input id="transLocationInput" class="insertOption" type="text" name="transLocation" required><br>' + 
            '<label class="insertOption" for="category"><b>Category</b></label><br>' +
-           '<select class="insertOption" name="category">' +
+           '<select id="categoryInput" class="insertOption" name="category">' +
            '<option value="1">Mortgage/Rent</option>' + 
            '<option value="2">Car Payment</option>' +
            '<option value="3">Gas (Car)</option>' + 
@@ -89,9 +97,9 @@
            '<option value="21">Entertainment</option>' +
            '</select><br>' +
            '<label class="insertOption" for="amount"><b>Amount</b></label><br>' +
-           '<input class="insertOption" type="number" name="amount" required><br>' +
+           '<input id="amountInput" class="insertOption" type="number" name="amount" required><br>' +
            '<label class="insertOption" for="payMethod"><b>Payment Method</b></label><br>' +
-           '<select class="insertOption" name="payMethod">' +
+           '<select id="mopInput" class="insertOption" name="payMethod">' +
            '<option value="1">Cash</option>' +
            '<option value="2">Credit Card</option>' +
            '<option value="3">Debit Card</option>' +
@@ -99,15 +107,44 @@
            '<option value="5">None</option>' +
            '</select><br>' +
            '<label class="insertOption" for="desc"><b>Description</b></label><br>' +
-           '<textarea class="insertOption" name="desc" rows="4" cols="45"></textarea>' +
+           '<textarea id="descInput" class="insertOption" name="desc" rows="4" cols="45"></textarea>' +
            '<label class="insertOption" for="wd_type"><b>Withdrawal/Deposit</b></label><br>' +
-           '<select class="insertOption" name="wd_type">' +
+           '<select id="wdInput" class="insertOption" name="wd_type">' +
            '<option value="1">Withdrawal</option>' + 
            '<option value="2">Deposit</option>' +
            '</select><br>' +
-           '<button class="insertOption" type="button" onclick="">Insert</button>' +
-           '</form>'
+           '<button class="insertOption" type="button" onclick="insertTransaction()">Insert</button>' +
+           '</div>'
          )
+     }
+
+     function insertTransaction() {
+      var transDate = $('#transDateInput').val()
+      var transLocation = $('#transLocationInput').val()
+      var category = $('#categoryInput').val()
+      var amount = $('#amountInput').val()
+      var mop = $('#mopInput').val()
+      var desc = $('#descInput').val()
+      var wd = $('#wdInput').val()
+
+      var params = {
+         transDate: transDate,
+         transLocation: transLocation,
+         category: category,
+         amount: amount,
+         mop: mop,
+         desc: desc,
+         wd: wd
+      }
+
+      $.post('/insert_transaction', params, function(result) {
+         if (result.success) {
+            loadTransactions()
+         }
+         else {
+            $('checkRegister').text(result.msg)
+         }
+      })
      }
      
    //  function getData() {

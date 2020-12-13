@@ -121,17 +121,38 @@ express()
       }
     })
   })
+  .post('/insert_transaction', function(req, res) {
+    //create insert sql statement
+    var sql = 'INSERT INTO check-register_entry (user_name, trans_date, trans_location, category, amount, pay_method, entry_desc, wd_type) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)'
+
+    //create array of parameters to be inserted in values clause of sql statement
+    values = [req.session.username, req.body.transDate, req.body.transLocation, req.body.category, req.body.amount, req.body.mop, req.body.desc, req.body.wd]
+
+    //initiate pool to send insert
+    pool.query(sql, values, function(err, response) {
+      //if there is an error, send flase to client with err msg
+      if (err) {
+        console.log(err.stack)
+        res.send({success: false, msg: 'error inserting transaction'})
+      }
+      //if successful, send true to client
+      else {
+        res.send({success: true})
+      }
+    })
+  })
   .get('/get_user_info', function (req, res) {
-    var sql = 'SELECT u.first_name, u.last_name, cr.trans_date, cr.trans_location, cr.category, cr.amount, cr.pay_method, cr.entry_desc, cr.wd_type FROM users u INNER JOIN check_register_entry cr ON u.user_name = cr.user_name;';
-    pool.query(sql, function(err, result) {
+    var sql = 'SELECT cr.trans_date, cr.trans_location, cr.category, cr.amount, cr.pay_method, cr.entry_desc, cr.wd_type FROM users u INNER JOIN check_register_entry cr ON u.user_name = cr.user_name INNER JOIN cat_common_lookup ccl ON cr.category = ccl.cat_cl_id INNER JOIN mop_common_lookup mcl ON cr.pay_method = mcl.mop_cl_id INNER JOIN type_common_lookup tcl ON cr.wd_type = tcl.type_cl_id WHERE cr.user_name = "$1";';
+    values = [req.session.username]
+    pool.query(sql, values, function(err, result) {
       if (err) {
         console.log("error in query")
-        console.log(err)
-        res.status(400).send(err)
+        console.log(err.stack)
+        res.status(400).send({success: false, msg: 'error querying data'})
       }
       console.log("back with DB results:")
       console.log(result.rows)
-      res.status(200).send(result.rows[0])
+      res.status(200).send({success: true, rows: result.rows, rowCount: result.rowCount})
     })
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))

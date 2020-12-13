@@ -123,7 +123,7 @@ express()
   })
   .post('/insert_transaction', function(req, res) {
     //create insert sql statement
-    var sql = 'INSERT INTO check-register_entry (user_name, trans_date, trans_location, category, amount, pay_method, entry_desc, wd_type) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)'
+    var sql = 'INSERT INTO check_register_entry (user_name, trans_date, trans_location, category, amount, pay_method, entry_desc, wd_type) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)'
 
     //create array of parameters to be inserted in values clause of sql statement
     values = [req.session.username, req.body.transDate, req.body.transLocation, req.body.category, req.body.amount, req.body.mop, req.body.desc, req.body.wd]

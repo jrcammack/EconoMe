@@ -53,10 +53,10 @@
             var txt = '';
             for (i of result.rows) {
               modifiedDate = new Date(i.trans_date)
-              txt += ('<tr><td>' + modifiedDate.toDateString() + '</td><td>' + i.trans_location + '</td><td>' + i.cat_name + '</td><td>' + i.amount + '</td><td>' + i.mop_type + '</td><td>' + i.entry_desc + '</td><td>' + i.wd_type + '</td></tr>')
+              txt += ('<tr><td>' + i.entry_id + '</td><td>' + modifiedDate.toDateString() + '</td><td>' + i.trans_location + '</td><td>' + i.cat_name + '</td><td>' + i.amount + '</td><td>' + i.mop_type + '</td><td>' + i.entry_desc + '</td><td>' + i.wd_type + '</td></tr>')
             }
             $('#checkRegister').html('Here are your transactions: <br>' +
-            '<table><tr><th>Transaction Date</th><th>Transaction Location</th><th>Category</th><th>Amount</th><th>Pay Method</th><th>Description</th><th>Type</th></tr>' + txt + '</table>')
+            '<table><tr><th>Transaction #</th><th>Transaction Date</th><th>Transaction Location</th><th>Category</th><th>Amount</th><th>Pay Method</th><th>Description</th><th>Type</th></tr>' + txt + '</table>')
            }
            else {
             $('#checkRegister').text(result.msg)

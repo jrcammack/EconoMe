@@ -144,14 +144,18 @@
 
           console.log(result.rows)
           console.log(result.rows[0])
+
+          catHolder = '#' + result.rows[0].cat_name
+          mopHolder = '#' + result.rows[0].mop_type
+          wdHolder = '#' + result.rows[0].wd_type
           
           $('#transDateInput').attr('value', result.rows[0].trans_date)
           $('#transLocationInput').text(result.rows[0].trans_location)
-          $('"#' + result.rows[0].cat_name + '"').attr('selected', 'selected')
+          $(catHolder).attr('selected', 'selected')
           $('#amountInput').attr('value', result.rows[0].amount)
-          $('"#' + result.rows[0].mop_type + '"').attr('selected', 'selected')
+          $(mopHolder).attr('selected', 'selected')
           $('#descInput').text(result.rows[0].entry_desc)
-          $('"#' + result.rows[0].wd_type + '"').attr('selected', 'selected')
+          $(wdHolder).attr('selected', 'selected')
 
           $('#updateRow').click(function() {
             var entry_id = $(this).attr('entryID')

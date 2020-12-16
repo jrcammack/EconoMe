@@ -141,6 +141,9 @@
             '<button id="updateRow" entryID="' + entry_id + '" class="insertOption" type="button">Update</button>' +
             '</div>'
           )
+
+          console.log(result.rows)
+          console.log(result.rows[0])
           
           $('transDateInput').attr('placeholder', result.rows[0].trans_date)
           $('transLocationInput').attr('placeholder', result.rows[0].trans_location)

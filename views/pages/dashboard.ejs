@@ -36,14 +36,14 @@
       <div class="col-lg-3"></div>
       <div id="checkRegister" class="col-lg-6"></div>
       <div id="filterControls" class="col-lg-3">
-        <label for="filterOption">Filter By</label><br>
+        <!-- <label for="filterOption">Filter By</label><br>
         <select name="filterOption">
           <option value="date">Date</option>
           <option value="amount">Amount</option>
           <option value="wd_type">Withdrawal/Deposit</option>
           <option value="location">Location</option>
           <option value="category">Category</option>
-        </select>
+        </select> -->
       </div>
     </div>
   </div>
@@ -59,7 +59,7 @@
             orderNum = 1;
             for (i of result.rows) {
               modifiedDate = new Date(i.trans_date)
-              txt += ('<tr><td>' + orderNum + '</td><td>' + modifiedDate.toDateString() + '</td><td>' + i.trans_location + '</td><td>' + i.cat_name + '</td><td>' + i.amount + '</td><td>' + i.mop_type + '</td><td>' + i.entry_desc + '</td><td>' + i.wd_type + '</td><td>' + '<button class="editRow" type="button" entryID="' + i.entry_id + '">Edit</button>' + '<button class="deleteRow" type="button" entryID="' + i.entry_id + '">Delete</button>' + '</td></tr>')
+              txt += ('<tr><td>' + orderNum + '</td><td>' + modifiedDate.toDateString() + '</td><td>' + i.trans_location + '</td><td>' + i.cat_name + '</td><td>' + i.amount + '</td><td>' + i.mop_type + '</td><td>' + i.entry_desc + '</td><td>' + i.wd_type + '</td><td>' + '<button color="black" class="editRow" type="button" entryID="' + i.entry_id + '">Edit</button>' + '<button color="black" class="deleteRow" type="button" entryID="' + i.entry_id + '">Delete</button>' + '</td></tr>')
               orderNum++
             }
             $('#checkRegister').html('Here are your transactions: <br>' +

@@ -151,11 +151,11 @@
           
           $('#transDateInput').attr('value', result.rows[0].trans_date)
           $('#transLocationInput').text(result.rows[0].trans_location)
-          $("'" + catHolder + "'").attr('selected', 'selected')
+          
           $('#amountInput').attr('value', result.rows[0].amount)
-          $("'" + mopHolder + "'").attr('selected', 'selected')
+          
           $('#descInput').text(result.rows[0].entry_desc)
-          $("'" + wdHolder + "'").attr('selected', 'selected')
+          
 
           $('#updateRow').click(function() {
             var entry_id = $(this).attr('entryID')

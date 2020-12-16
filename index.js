@@ -121,6 +121,21 @@ express()
       }
     })
   })
+  .post('/delete_row', function(req, res) {
+    var sql = 'DELETE FROM check_register_entry WHERE entry_id = $1'
+
+    values = [req.body.entryID]
+
+    pool.query(sql, values, function(err, result) {
+      if (err) {
+        console.log(err.stack)
+        res.send({success: false, msg: 'error deleting record'})
+      }
+      else {
+        res.send({success: true})
+      }  
+    })
+  })
   .post('/update_transaction', function(req, res) {
     var sql = 'UPDATE check_register_entry SET trans_date = $1, trans_location = $2, category = $3, amount = $4, pay_method = $5, entry_desc = $6, wd_type = $7 WHERE entry_id = $8;'
     

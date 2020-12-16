@@ -79,8 +79,21 @@
      })
      $('.deleteRow').click(function () {
          var entry_id = $(this).attr("entryID")
-         alert(entry_id)
+         deleteRow(entry_id)
      })
+    }
+
+    function deleteRow(entry_id) {
+      params = {entryID: entry_id}
+      $.post('/delete_row', params, function(result) {
+        if (result.success) {
+          alert('record has been deleted')
+          loadTransactions()
+        }
+        else {
+          $('#checkRegister').text(result.msg)
+        }
+      })
     }
     
     function createEditDialog(entry_id) {
@@ -158,7 +171,7 @@
           })
         }
         else {
-          $('checkRegister').text(result.msg)
+          $('#checkRegister').text(result.msg)
         }
       })
     }
@@ -185,10 +198,11 @@
 
       $.post('/update_transaction', params, function(result) {
          if (result.success) {
+            alert('record updated')
             loadTransactions()
          }
          else {
-            $('checkRegister').text(result.msg)
+            $('#checkRegister').text(result.msg)
          }
       })  
     }

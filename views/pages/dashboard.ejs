@@ -61,7 +61,7 @@
             orderNum = 1;
             for (i of result.rows) {
               modifiedDate = new Date(i.trans_date)
-              txt += ('<tr><td>' + orderNum + '</td><td>' + modifiedDate.toDateString() + '</td><td>' + i.trans_location + '</td><td>' + i.cat_name + '</td><td>' + i.amount + '</td><td>' + i.mop_type + '</td><td>' + i.entry_desc + '</td><td>' + i.wd_type + '</td><td>' + '<button id="editRow" type="button" entryID="' + i.entry_id + '">Edit</button>' + '<button id="deleteRow" type="button" entryID="' + i.entry_id + '">Delete</button>' + '</td></tr>')
+              txt += ('<tr><td>' + orderNum + '</td><td>' + modifiedDate.toDateString() + '</td><td>' + i.trans_location + '</td><td>' + i.cat_name + '</td><td>' + i.amount + '</td><td>' + i.mop_type + '</td><td>' + i.entry_desc + '</td><td>' + i.wd_type + '</td><td>' + '<button class="editRow" type="button" entryID="' + i.entry_id + '">Edit</button>' + '<button class="deleteRow" type="button" entryID="' + i.entry_id + '">Delete</button>' + '</td></tr>')
               orderNum++
             }
             $('#checkRegister').html('Here are your transactions: <br>' +
@@ -75,11 +75,11 @@
      }
 
      function attachEventHandlers() {
-      $('#editRow').click(function () {
+      $('.editRow').click(function () {
          var entry_id = $(this).attr("entryID")
          alert(entry_id)
      })
-     $('#deleteRow').click(function () {
+     $('.deleteRow').click(function () {
          var entry_id = $(this).attr("entryID")
          alert(entry_id)
      })

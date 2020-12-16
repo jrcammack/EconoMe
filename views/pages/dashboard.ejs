@@ -66,19 +66,26 @@
             }
             $('#checkRegister').html('Here are your transactions: <br>' +
             '<table><tr><th>Transaction #</th><th>Transaction Date</th><th>Transaction Location</th><th>Category</th><th>Amount</th><th>Pay Method</th><th>Description</th><th>Type</th></tr>' + txt + '</table>')
-           }
+            attachEventHandlers()
+          }
            else {
             $('#checkRegister').text(result.msg)
            }
          })
      }
 
-     $(function() {
-       $('#editRow').click(function () {
+     function attachEventHandlers() {
+      $('#editRow').click(function () {
          var entry_id = $(this).attr("entryID")
          alert(entry_id)
-       })
      })
+     $('#deleteRow').click(function () {
+         var entry_id = $(this).attr("entryID")
+         alert(entry_id)
+     })
+    }
+       
+      
 
     
 

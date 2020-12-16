@@ -145,12 +145,12 @@
           console.log(result.rows)
           console.log(result.rows[0])
           
-          $('#transDateInput').attr('placeholder', result.rows[0].trans_date)
-          $('#transLocationInput').attr('placeholder', result.rows[0].trans_location)
+          $('#transDateInput').attr('value', result.rows[0].trans_date)
+          $('#transLocationInput').text(result.rows[0].trans_location)
           $(result.rows[0].cat_name).attr('selected', 'selected')
-          $('#amountInput').attr('placeholder', result.rows[0].amount)
+          $('#amountInput').attr('value', result.rows[0].amount)
           $(result.rows[0].mop_type).attr('selected', 'selected')
-          $('#descInput').attr('placeholder', result.rows[0].entry_desc)
+          $('#descInput').text(result.rows[0].entry_desc)
           $(result.rows[0].wd_type).attr('selected', 'selected')
 
           $('#updateRow').click(function() {

@@ -147,11 +147,11 @@
           
           $('#transDateInput').attr('value', result.rows[0].trans_date)
           $('#transLocationInput').text(result.rows[0].trans_location)
-          $('"' + result.rows[0].cat_name + '"').attr('selected', 'selected')
+          $('"#' + result.rows[0].cat_name + '"').attr('selected', 'selected')
           $('#amountInput').attr('value', result.rows[0].amount)
-          $('"' + result.rows[0].mop_type + '"').attr('selected', 'selected')
+          $('"#' + result.rows[0].mop_type + '"').attr('selected', 'selected')
           $('#descInput').text(result.rows[0].entry_desc)
-          $('"' + result.rows[0].wd_type + '"').attr('selected', 'selected')
+          $('"#' + result.rows[0].wd_type + '"').attr('selected', 'selected')
 
           $('#updateRow').click(function() {
             var entry_id = $(this).attr('entryID')

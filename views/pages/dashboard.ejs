@@ -38,7 +38,14 @@
       <div class="col-lg-3"></div>
       <div id="checkRegister" class="col-lg-6"></div>
       <div id="filterControls" class="col-lg-3">
-        
+        <label for="filterOption">Filter By</label><br>
+        <select name="filterOption">
+          <option value="date">Date</option>
+          <option value="amount">Amount</option>
+          <option value="wd_type">Withdrawal/Deposit</option>
+          <option value="location">Location</option>
+          <option value="category">Category</option>
+        </select>
       </div>
     </div>
   </div>
@@ -51,9 +58,11 @@
            if (result.success) {
             var i;
             var txt = '';
+            orderNum = 1;
             for (i of result.rows) {
               modifiedDate = new Date(i.trans_date)
-              txt += ('<tr><td>' + i.entry_id + '</td><td>' + modifiedDate.toDateString() + '</td><td>' + i.trans_location + '</td><td>' + i.cat_name + '</td><td>' + i.amount + '</td><td>' + i.mop_type + '</td><td>' + i.entry_desc + '</td><td>' + i.wd_type + '</td></tr>')
+              txt += ('<tr><td>' + orderNum + '</td><td>' + modifiedDate.toDateString() + '</td><td>' + i.trans_location + '</td><td>' + i.cat_name + '</td><td>' + i.amount + '</td><td>' + i.mop_type + '</td><td>' + i.entry_desc + '</td><td>' + i.wd_type + '</td></tr>')
+              orderNum++
             }
             $('#checkRegister').html('Here are your transactions: <br>' +
             '<table><tr><th>Transaction #</th><th>Transaction Date</th><th>Transaction Location</th><th>Category</th><th>Amount</th><th>Pay Method</th><th>Description</th><th>Type</th></tr>' + txt + '</table>')
@@ -63,6 +72,16 @@
            }
          })
      }
+
+    //  function updateRow() {
+
+    //  }
+
+    //  function deleteRow() {
+
+    //  }
+
+    // '</td><td>' + '<button type="button" onclick="updateRow()" value="' + i.entry_id + '">Edit</button>' + '<button type="button" onclick="deleteRow()" value="' + i.entry_id + '">Delete</button>' +
 
      function createInsertDialog() {
         $('#checkRegister').css('color', 'black')

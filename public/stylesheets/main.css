@@ -95,3 +95,9 @@ td, th {
 #loginErr {
    color: red;
 }
+
+#filterControls {
+   background-color: whitesmoke;
+   border-radius: 5px;
+   
+}

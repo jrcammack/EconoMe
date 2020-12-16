@@ -96,8 +96,11 @@ td, th {
    color: red;
 }
 
-#filterControls {
-   background-color: whitesmoke;
-   border-radius: 5px;
-   
+.deleteRow, .editRow {
+   color: black;
 }
+
+/* #filterControls {
+   background-color: whitesmoke;
+   border-radius: 5px; 
+} */

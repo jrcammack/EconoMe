@@ -121,6 +121,21 @@ express()
       }
     })
   })
+  .post('/update_transaction', function(req, res) {
+    var sql = 'UPDATE check_register_entry SET trans_date = $1, trans_location = $2, category = $3, amount = $4, pay_method = $5, entry_desc = $6, wd_type = $7 WHERE entry_id = $8;'
+    
+    values = [req.body.transDate, req.body.transLocation, req.body.category, req.body.amount, req.body.mop, req.body.desc, req.body.wd, req.body.entry_id]
+
+    pool.query(sql, values, function(err, result) {
+      if (err) {
+        console.log(err.stack)
+        res.send({success: false, msg: 'error updating record'})
+      }
+      else {
+        res.send({success: true})
+      }  
+    })
+  })
   .post('/insert_transaction', function(req, res) {
     //create insert sql statement
     var sql = 'INSERT INTO check_register_entry (user_name, trans_date, trans_location, category, amount, pay_method, entry_desc, wd_type) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)'
@@ -133,11 +148,25 @@ express()
       //if there is an error, send flase to client with err msg
       if (err) {
         console.log(err.stack)
-        res.send({success: false, msg: 'error inserting transaction'})
+        res.send({success: false, msg: 'error inserting record'})
       }
       //if successful, send true to client
       else {
         res.send({success: true})
+      }
+    })
+  })
+  .get('/get_current_row_info', function (req, res) {
+    var sql = 'SELECT cr.entry_id, cr.trans_date, cr.trans_location, ccl.cat_name, cr.amount, mcl.mop_type, cr.entry_desc, tcl.wd_type FROM users u INNER JOIN check_register_entry cr ON u.user_name = cr.user_name INNER JOIN cat_common_lookup ccl ON cr.category = ccl.cat_cl_id INNER JOIN mop_common_lookup mcl ON cr.pay_method = mcl.mop_cl_id INNER JOIN type_common_lookup tcl ON cr.wd_type = tcl.type_cl_id WHERE cr.entry_id = $1;'
+    values = [req.body.entryID]
+    pool.query(sql, values, function(err, result) {
+      if (err) {
+        console.log("error in query")
+        console.log(err.stack)
+        res.status(400).send({success: false, msg: 'error querying data'})
+      }
+      else {
+        res.status(200).send({success: true, rows: result.rows, rowCount: result.rowCount})
       }
     })
   })

@@ -77,22 +77,120 @@
      function attachEventHandlers() {
       $('.editRow').click(function () {
          var entry_id = $(this).attr("entryID")
-         alert(entry_id)
+         createEditDialog(entry_id)
      })
      $('.deleteRow').click(function () {
          var entry_id = $(this).attr("entryID")
          alert(entry_id)
      })
     }
-       
-      
-
     
+    function createEditDialog(entry_id) {
+      params = {entryID: entry_id}
+      $.get('/get_current_row_info', params, function(result) {
+        if (result.success) {
+          $('#checkRegister').css('color', 'black')
+          $('#checkRegister').html(
+            '<div id="insertDialog" method="POST" action="/insert_transaction">' +
+            '<label class="insertOption" for="transDate"><b>Transaction Date</b></label><br>' +
+            '<input id="transDateInput" class="insertOption" type="date" name="transDate" required><br>' +  
+            '<label class="insertOption" for="transLocation"><b>Transaction Location</b></label><br>' +
+            '<input id="transLocationInput" class="insertOption" type="text" name="transLocation" required><br>' + 
+            '<label class="insertOption" for="category"><b>Category</b></label><br>' +
+            '<select id="categoryInput" class="insertOption" name="category">' +
+            '<option id="Mortgage/Rent" value="1">Mortgage/Rent</option>' + 
+            '<option id="Car Payment" value="2">Car Payment</option>' +
+            '<option id="Gas (Car)" value="3">Gas (Car)</option>' + 
+            '<option id="Car Maintenance" value="4">Car Maintenance</option>' +
+            '<option id="Groceries" value="5">Groceries</option>' +
+            '<option id="Restaurants" value="6">Restaurants</option>' +
+            '<option id="Electricity" value="7">Electricity</option>' + 
+            '<option id="Gas (Home)" value="8">Gas (Home)</option>' +
+            '<option id="Water" value="9">Water</option>' + 
+            '<option id="Garbage" value="10">Garbage</option>' +  
+            '<option id="Phone Bill" value="11">Phone Bill</option>' +
+            '<option id="Cable/Internet" value="12">Cable/Internet</option>' +
+            '<option id="Clothing" value="13">Clothing</option>' +
+            '<option id="Insurance/Healthcare" value="14">Insurance/Healthcare</option>' +
+            '<option id="Memberships" value="15">Memberships</option>' +
+            '<option id="Personal" value="16">Personal</option>' +
+            '<option id="Debt" value="17">Debt</option>' +
+            '<option id="Retirement" value="18">Retirement</option>' +
+            '<option id="Education" value="19">Education</option>' +
+            '<option id="Savings" value="20">Savings</option>' +
+            '<option id="Gifts/Donations" value="21">Gifts/Donations</option>' +
+            '<option id="Entertainment" value="22">Entertainment</option>' +
+            '</select><br>' +
+            '<label class="insertOption" for="amount"><b>Amount</b></label><br>' +
+            '<input id="amountInput" class="insertOption" type="number" name="amount" required><br>' +
+            '<label class="insertOption" for="payMethod"><b>Payment Method</b></label><br>' +
+            '<select id="mopInput" class="insertOption" name="payMethod">' +
+            '<option id="Cash" value="1">Cash</option>' +
+            '<option id="Credit Card" value="2">Credit Card</option>' +
+            '<option id="Debit Card" value="3">Debit Card</option>' +
+            '<option id="Check" value="4">Check</option>' +
+            '<option id="None" value="5">None</option>' +
+            '</select><br>' +
+            '<label class="insertOption" for="desc"><b>Description</b></label><br>' +
+            '<textarea id="descInput" class="insertOption" name="desc" rows="4" cols="45"></textarea>' +
+            '<label class="insertOption" for="wd_type"><b>Withdrawal/Deposit</b></label><br>' +
+            '<select id="wdInput" class="insertOption" name="wd_type">' +
+            '<option id="Withdrawal" value="1">Withdrawal</option>' + 
+            '<option id="Deposit" value="2">Deposit</option>' +
+            '</select><br>' +
+            '<button id="updateRow" entryID="' + entry_id + '" class="insertOption" type="button">Update</button>' +
+            '</div>'
+          )
+          
+          $('transDateInput').attr('placeholder', result.rows[0].trans_date)
+          $('transLocationInput').attr('placeholder', result.rows[0].trans_location)
+          $(result.rows[0].cat_name).attr('selected', 'selected')
+          $('amountInput').attr('placeholder', result.rows[0].amount)
+          $(result.rows[0].mop_type).attr('selected', 'selected')
+          $('descInput').attr('placeholder', result.rows[0].entry_desc)
+          $(result.rows[0].wd_type).attr('selected', 'selected')
 
+          $('updateRow').click(function() {
+            var entry_id = $(this).attr('entryID')
+            updateRow(entry_id)
+          })
+        }
+        else {
+          $('checkRegister').text(result.msg)
+        }
+      })
+    }
+
+    function updateRow(entry_id) {
+      var transDate = $('#transDateInput').val()
+      var transLocation = $('#transLocationInput').val()
+      var category = $('#categoryInput').val()
+      var amount = $('#amountInput').val()
+      var mop = $('#mopInput').val()
+      var desc = $('#descInput').val()
+      var wd = $('#wdInput').val()
+
+      var params = {
+         transDate: transDate,
+         transLocation: transLocation,
+         category: category,
+         amount: amount,
+         mop: mop,
+         desc: desc,
+         wd: wd,
+         entry_id: entry_id
+      }
+
+      $.post('/update_transaction', params, function(result) {
+         if (result.success) {
+            loadTransactions()
+         }
+         else {
+            $('checkRegister').text(result.msg)
+         }
+      })  
+    }
     
-
-    
-
      function createInsertDialog() {
         $('#checkRegister').css('color', 'black')
         $('#checkRegister').html(
@@ -124,7 +222,7 @@
            '<option value="19">Education</option>' +
            '<option value="20">Savings</option>' +
            '<option value="21">Gifts/Donations</option>' +
-           '<option value="21">Entertainment</option>' +
+           '<option value="22">Entertainment</option>' +
            '</select><br>' +
            '<label class="insertOption" for="amount"><b>Amount</b></label><br>' +
            '<input id="amountInput" class="insertOption" type="number" name="amount" required><br>' +
